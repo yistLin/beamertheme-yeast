@@ -1,0 +1,166 @@
+\ProvidesPackage{beamerthemeyeast}
+
+\usepackage{xifthen} % provides \isempty
+\usepackage{eulervm} % for nice-looking math letters
+\usepackage[sfdefault]{FiraSans}
+\usepackage[T1]{fontenc}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+\mode<presentation>
+
+  \usetheme{default}
+  \usefonttheme{structurebold}
+  \usefonttheme{professionalfonts}
+  
+  % define fonts
+%   \setmainfont{Fira Sans}
+%   \setsansfont{Fira Sans}
+%   \setmonofont{Fira Mono}
+%   \setmathfont{Asana Math}
+%   \setmathfont[range=up]{Fira Sans Regular}
+%   \setmathfont[range=it]{Fira Sans Italic}
+%   \setmathfont[range=bfup]{Fira Sans Bold}
+%   \setmathfont[range=bfit]{Fira Sans Bold Italic}
+
+  % define colors
+  \definecolor{Dark}{HTML}{363237}
+  \definecolor{Primary}{HTML}{73605b}
+  \definecolor{Secondary}{HTML}{2d4262}
+  \definecolor{Tertiary}{HTML}{d09683}
+
+  % define template colors
+  \setbeamercolor{frametitle}{fg=Primary}
+  \setbeamercolor{block title}{fg=Primary}
+  \setbeamercolor{block title alerted}{fg=Tertiary}
+  \setbeamercolor{block title example}{fg=Secondary}
+  \setbeamercolor{normal text}{fg=Dark}
+  \setbeamercolor{alerted text}{fg=Tertiary}
+  \setbeamercolor{example text}{fg=Secondary}
+  \setbeamercolor{title}{fg=Primary}
+  \setbeamercolor{subtitle}{fg=Dark}
+  \setbeamercolor{author}{fg=Dark}
+  \setbeamercolor{date}{fg=Dark}
+
+  % dim the animated text
+  \setbeamercovered{transparent}
+
+  % redefine title page
+  \setbeamertemplate{title page}{%
+    \centering
+    \vfill
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}\LARGE\inserttitle}\par%
+    \ifthenelse{\isempty{\insertsubtitle}}{
+      \relax
+    }{
+      \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par%
+    }
+    \vspace{20pt}
+    \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par%
+    \ifthenelse{\isempty{\insertinstitute}}{
+      \relax
+    }{
+      \usebeamerfont{institute}\insertinstitute\par%
+    }
+    {\usebeamerfont{date}\usebeamercolor[fg]{date}\footnotesize\insertdate}\par%
+  }
+
+  % define footline
+  \setbeamercolor{author in head/foot}{fg=Secondary, bg=Tertiary}
+  \setbeamercolor{section in head/foot}{fg=white, bg=Secondary}
+  \setbeamercolor{number in head/foot}{fg=Secondary, bg=Tertiary}
+  \setbeamertemplate{footline}{%
+    \hbox{%
+      \begin{beamercolorbox}[wd=.1\paperwidth,ht=3ex,dp=1.5ex,center]{author in head/foot}
+        \insertauthor
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.8\paperwidth,ht=3ex,dp=1.5ex,center]{section in head/foot}
+        \insertsection
+      \end{beamercolorbox}%
+      \begin{beamercolorbox}[wd=.1\paperwidth,ht=3ex,dp=1.5ex,center]{number in head/foot}
+        \insertframenumber\ /\ \inserttotalframenumber
+      \end{beamercolorbox}%
+    }
+  }
+
+  % remove navi symbols
+  \setbeamertemplate{navigation symbols}{}
+
+  % use rounded blocks with shadow
+  \setbeamertemplate{blocks}[rounded][shadow=true]
+
+  % define the left and right margin of text
+  \setbeamersize{text margin left=.1\paperwidth, text margin right=.1\paperwidth}
+
+  % remove frame numbering from title page
+  \renewcommand{\maketitle}{
+    \begin{frame}[plain,noframenumbering]
+      \titlepage
+    \end{frame}
+  }
+
+  % create table of contents template
+  \newcommand{\maketoc}{
+    \begin{frame}[plain,noframenumbering]
+      \frametitle{Outline}
+      \tableofcontents
+    \end{frame}
+  }
+  \setbeamercolor{section in toc}{fg=Dark}
+  \setbeamercolor{subsection in toc}{fg=Primary}
+  \setbeamertemplate{section in toc}{
+    \inserttocsectionnumber. \inserttocsection%
+  }
+  \setbeamertemplate{subsection in toc}{
+    \quad\inserttocsectionnumber.\inserttocsubsectionnumber. \inserttocsubsection\par%
+  }
+
+  % redefine itemize items
+  \setbeamertemplate{itemize item}{
+    \normalsize\raise1pt\hbox{\donotcoloroutermaths$\bullet$}
+  }
+  \setbeamertemplate{itemize subitem}{
+    \footnotesize\raise0.75pt\hbox{\textendash}
+  }
+  \setbeamertemplate{itemize subsubitem}{
+    \tiny\raise0.5pt\hbox{\donotcoloroutermaths$\blacksquare$}
+  }
+  \setbeamercolor{itemize item}{fg=Secondary}
+  \setbeamercolor{itemize subitem}{fg=Secondary}
+  \setbeamercolor{itemize subsubitem}{fg=Secondary}
+
+  % redefine enumerate items
+  \setbeamertemplate{enumerate item}{\arabic{enumi}.}
+  \setbeamertemplate{enumerate subitem}{\alph{enumii}.}
+  \setbeamertemplate{enumerate subsubitem}{\roman{enumiii}.}
+  \setbeamercolor{enumerate item}{fg=Secondary}
+  \setbeamercolor{enumerate subitem}{fg=Secondary}
+  \setbeamercolor{enumerate subsubitem}{fg=Secondary}
+  
+  % redefine description item
+  \setbeamercolor{description item}{fg=Secondary}
+  
+  % redefine caption item
+  \setbeamercolor{caption name}{fg=Secondary}
+
+  % insert section head frame
+  \AtBeginSection[]{
+    \begin{frame}[plain,noframenumbering]
+      \vfill
+      \centering
+      \usebeamerfont{title}\usebeamercolor[fg]{title}\insertsectionhead\par
+      \vfill
+    \end{frame}
+  }
+  \AtBeginSubsection[]{
+    \begin{frame}[plain,noframenumbering]
+      \vfill
+      \centering
+      \usebeamerfont{title}\usebeamercolor[fg]{title}\insertsubsectionhead\par%
+      \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsectionhead\par%
+      \vfill
+    \end{frame}
+  }
+
+\mode<all>

@@ -1,0 +1,171 @@
+\documentclass[10pt]{beamer}
+\usetheme{yeast}
+
+\usepackage{lipsum}
+
+\title{Yeast Theme}
+\subtitle{A Beamer Theme Demonstration}
+\author{Yist Lin}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\maketoc
+
+\section{Basic Elements}
+
+\begin{frame}{Bold, Italic and Emphasized Text}
+  Text can have different \textbf{weight}.
+  And not only weight, it could also \textit{be italic}.
+  
+  But most of the time, simply use \texttt{\textbackslash{}emph\{\}} could be the best choice.
+  In normal text, text being emphasized looks exactly \emph{like italic text}.
+  
+  Sometimes you really need to emphasize something, you might want it not only to \textbf{be bold, but \textit{also italic}}.
+\end{frame}
+
+\begin{frame}{Ordered and Unordered Lists}
+  The ordered list looks like this:
+  \begin{enumerate}
+    \item The first item
+    \item second one
+    \begin{enumerate}
+      \item the nested first item
+      \item the second one
+      \begin{enumerate}
+        \item the most indented one
+        \item And the last one
+      \end{enumerate}
+    \end{enumerate}
+  \end{enumerate}
+
+  And the unordered one looks like this:
+  \begin{itemize}
+    \item The first item
+    \item and the second one
+    \begin{itemize}
+      \item The first nested item
+      \item the second one
+      \begin{itemize}
+        \item Foo
+        \item bar
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Figure}
+    \begin{figure}
+        \centering
+        \includegraphics[width=.9\linewidth]{pixelhop.png}
+        \caption{Block diagram of PixelHop}
+        \label{fig:pixelhop}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Table}
+    \begin{table}
+        \centering
+        \begin{tabular}{ccc}
+            \textbf{Method} & \textbf{\# of Iterations} & \textbf{Weight} \\
+            4 & 5 & 6
+        \end{tabular}
+        \caption{Just caption}
+        \label{tab:my_label}
+    \end{table}
+\end{frame}
+
+\subsection{Beamer Only Elements}
+
+\begin{frame}{Blocks}
+  Blocks are used to highlight some text.
+  \begin{block}{Block}
+    Just a block.
+  \end{block}
+  \begin{alertblock}{Alerted Block}
+    This is an alerted block.
+  \end{alertblock}
+  \begin{exampleblock}{Example Block}
+    And this is an example block.
+  \end{exampleblock}
+\end{frame}
+
+\subsection{Overlay Animation}
+
+\begin{frame}{Animated}
+  \begin{itemize}
+    \item <1-> This first item
+    \item <1-> The second item
+    \item <2-> The third item is hidden at first
+  \end{itemize}
+\end{frame}
+
+\section{Math Equations}
+
+\begin{frame}{Display and Inline Mode}
+  Many claim that the most beautiful equation is Euler's equation.
+  \[ e^{\pi i} = 1 \]
+  
+  Long ago, Johann Bernoulli noted that
+  $$ \frac{1}{1+x^2} = \frac{1}{2}\left( \frac{1}{1-ix} + \frac{1}{1+ix} \right) $$
+  
+  And Roger Cotes in 1714 discovered that $ ix = \ln(\cos x + i \sin x) $
+\end{frame}
+
+\subsection{Baum-Welch Algorithm}
+
+\begin{frame}{Forward Procedure}
+  \textit{Forward algorithm}: define a forward variable $\alpha_t(i)$
+  \begin{align}
+    \alpha_t (i)
+    &= P(o_1, o_2, \dots, o_t,\ q_t = i\ |\ \lambda) \\
+    &= \text{Prob}\,[\,\text{observing } o_1, o_2, \dots, o_t, \text{ state } i \text{ at time } t\ |\ \lambda\,]
+  \end{align}
+  
+  \begin{description}
+    \item[Initialization]
+    \begin{equation}
+      \alpha_1(i) = \pi_i b_i (o_1),\ 1 \leq i \leq N
+    \end{equation}
+    \item[Induction]
+    \begin{multline}
+      \alpha_{t+1}(j) = \left[\ \sum_{i=1}^{N} \alpha_t(i) a_{i j}\ \right] \cdot b_j(o_{t+1}),\\
+      1 \leq t \leq T-1,\ 1 \leq j \leq N
+    \end{multline}
+    \item[Termination]
+    \begin{equation}
+      P\left( \bar{O}\ |\ \lambda \right) = \sum_{i=1}^{N} \alpha_T(i)
+    \end{equation}
+  \end{description}
+\end{frame}
+
+\begin{frame}{Backward Procedure}
+  \textit{Backward algorithm}: define a backward variable $\beta_t(i)$
+  \begin{align}
+    \beta_t(i)
+    &= P(o_{t+1}, o_{t+2}, \dots, o_T\ |\ q_t = i, \lambda) \\
+    &= \text{Prob}\,[\,\text{observing } o_{t+1}, o_{t+2}, \dots, o_T\ | \text{ state } i \text{ at time } t,\ \lambda\,]
+  \end{align}
+  
+  \begin{description}
+    \item[Initialization]
+    \begin{equation}
+      \beta_T(i) = 1,\ 1 \leq i \leq N
+    \end{equation}
+    \item[Induction]
+    \begin{multline}
+      \beta_{t}(i) = \sum_{j=1}^{N} a_{i j}\ b_j (o_{t+1})\  \beta_{t+1}(j),\\
+      t = \{ T-1, T-2, \dots, 1\},\ 1 \leq i \leq N
+    \end{multline}
+  \end{description}
+\end{frame}
+
+\section{And This Is Simply a Test to See Whether a Very Long Section Name Looks Good in the Footline}
+
+\begin{frame}{Lipsum}
+  \lipsum[1]
+\end{frame}
+
+\end{document}
