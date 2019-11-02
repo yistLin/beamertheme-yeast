@@ -18,7 +18,7 @@
   \usefonttheme{professionalfonts}
 
   % define the left and right margin of text
-  \setbeamersize{text margin left=.1\paperwidth, text margin right=.1\paperwidth}
+  \setbeamersize{text margin left=.05\paperwidth, text margin right=.05\paperwidth}
 
   % define fonts
   \setbeamerfont{author}{series=\bfseries\rmfamily\upshape}
@@ -26,15 +26,20 @@
 
   % define colors
   \definecolor{Dark}{HTML}{363237}
+  \colorlet{Light}{Dark!3!}
+  \colorlet{Grey}{Dark!90!}
   \definecolor{Primary}{HTML}{73605b}
   \definecolor{Secondary}{HTML}{2d4262}
   \definecolor{Tertiary}{HTML}{d09683}
 
   % define template colors
   \setbeamercolor{frametitle}{fg=Primary}
-  \setbeamercolor{block title}{fg=Primary}
-  \setbeamercolor{block title alerted}{fg=Tertiary}
-  \setbeamercolor{block title example}{fg=Secondary}
+  \setbeamercolor{block title}{fg=Primary, bg=Light}
+  \setbeamercolor{block title alerted}{fg=Tertiary, bg=Light}
+  \setbeamercolor{block title example}{fg=Secondary, bg=Light}
+  \setbeamercolor{block body}{bg=Light}
+  \setbeamercolor{block body alerted}{bg=Light}
+  \setbeamercolor{block body example}{bg=Light}
   \setbeamercolor{normal text}{fg=Dark}
   \setbeamercolor{alerted text}{fg=Tertiary}
   \setbeamercolor{example text}{fg=Secondary}
@@ -43,7 +48,7 @@
   \setbeamercolor{author}{fg=Dark}
   \setbeamercolor{date}{fg=Dark}
   \setbeamercolor{author in head/foot}{fg=Secondary, bg=Tertiary}
-  \setbeamercolor{section in head/foot}{fg=white, bg=Secondary}
+  \setbeamercolor{section in head/foot}{fg=Tertiary!10, bg=Secondary}
   \setbeamercolor{number in head/foot}{fg=Secondary, bg=Tertiary}
   \setbeamercolor{itemize item}{fg=Secondary}
   \setbeamercolor{itemize subitem}{fg=Secondary}
@@ -55,6 +60,7 @@
   \setbeamercolor{caption name}{fg=Secondary}
   \setbeamercolor{section in toc}{fg=Dark}
   \setbeamercolor{subsection in toc}{fg=Primary}
+  \setbeamercolor{math text}{fg=Grey}
 
   % dim the animated text
   \setbeamercovered{transparent}

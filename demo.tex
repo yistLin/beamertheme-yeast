@@ -19,17 +19,19 @@
 
 \section{Basic Elements}
 
-\begin{frame}{Bold, Italic and Emphasized Text}
+\begin{frame}{Emphasized Text}
   Text can have different \textbf{weight}.
   And not only weight, it could also \textit{be italic}.
 
   But most of the time, simply use \texttt{\textbackslash{}emph\{\}} could be the best choice.
   In normal text, text being emphasized looks exactly \emph{like italic text}.
 
-  Sometimes you really need to emphasize something, you might want it not only to \textbf{be bold, but \textit{also italic}}.
+  \textit{Sometimes you really need to emphasize something, you might want it not only to \textbf{be bold}, but also italic}.
+
+  Other than italic and bold text, text could \alert{be colored} with \texttt{\textbackslash{}alerted\{\}}.
 \end{frame}
 
-\begin{frame}{Ordered Lists}
+\begin{frame}{Ordered and Unordered Lists}
   The ordered list looks like this:
   \begin{enumerate}
     \item The first item
@@ -43,11 +45,8 @@
                   \end{enumerate}
             \item No this is the last one
           \end{enumerate}
-    \item The last item
   \end{enumerate}
-\end{frame}
 
-\begin{frame}{Unordered Lists}
   And the unordered one looks like this:
   \begin{itemize}
     \item The first item
@@ -73,6 +72,7 @@
 \end{frame}
 
 \begin{frame}{Table}
+  In my opinion, \texttt{tabularx} could work better most of the time than simply using \texttt{tabular}.
   \begin{table}
     \centering
     \begin{tabularx}{\textwidth}{|c|X|X|}
