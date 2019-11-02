@@ -2,7 +2,6 @@
 
 \usepackage{xifthen} % provides \isempty
 \usepackage{eulervm} % for nice-looking math letters
-% \usepackage[sfdefault]{FiraSans}
 \usepackage[sfdefault]{sourcesanspro}
 \usepackage[ttdefault]{sourcecodepro}
 \usepackage[rmdefault]{sourceserifpro}
@@ -26,7 +25,7 @@
 
   % define colors
   \definecolor{Dark}{HTML}{363237}
-  \colorlet{Light}{Dark!3!}
+  \colorlet{Light}{Dark!5!}
   \colorlet{Grey}{Dark!90!}
   \definecolor{Primary}{HTML}{73605b}
   \definecolor{Secondary}{HTML}{2d4262}
@@ -88,13 +87,13 @@
   % define footline
   \setbeamertemplate{footline}{%
     \hbox{%
-      \begin{beamercolorbox}[wd=.1\paperwidth,ht=3ex,dp=1.5ex,center]{author in head/foot}
+      \begin{beamercolorbox}[wd=.1\paperwidth,ht=3ex,dp=1.75ex,center]{author in head/foot}
         \insertauthor
       \end{beamercolorbox}%
-      \begin{beamercolorbox}[wd=.8\paperwidth,ht=3ex,dp=1.5ex,center]{section in head/foot}
+      \begin{beamercolorbox}[wd=.8\paperwidth,ht=3ex,dp=1.75ex,center]{section in head/foot}
         \insertsection
       \end{beamercolorbox}%
-      \begin{beamercolorbox}[wd=.1\paperwidth,ht=3ex,dp=1.5ex,center]{number in head/foot}
+      \begin{beamercolorbox}[wd=.1\paperwidth,ht=3ex,dp=1.75ex,center]{number in head/foot}
         \insertframenumber\ /\ \inserttotalframenumber
       \end{beamercolorbox}%
     }
@@ -132,10 +131,10 @@
     \normalsize\raise1pt\hbox{\donotcoloroutermaths$\bullet$}
   }
   \setbeamertemplate{itemize subitem}{
-    \scriptsize\raise1.25pt\hbox{\donotcoloroutermaths$\blacktriangleright$}
+    \scriptsize\raise1.5pt\hbox{\donotcoloroutermaths$\blacktriangleright$}
   }
   \setbeamertemplate{itemize subsubitem}{
-    \tiny\raise0.5pt\hbox{\donotcoloroutermaths$\blacksquare$}
+    \tiny\raise0.4pt\hbox{\donotcoloroutermaths$\blacksquare$}
   }
 
   % redefine enumerate items
