@@ -8,7 +8,7 @@
 \usepackage[T1]{fontenc}
 
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{1em}
+\setlength{\parskip}{1ex}
 
 \mode<presentation>
 
@@ -22,6 +22,9 @@
   % define fonts
   \setbeamerfont{author}{series=\bfseries\rmfamily\upshape}
   \setbeamerfont{date}{series=\bfseries\rmfamily\itshape}
+  \setbeamerfont{author in head/foot}{series=\rmfamily\upshape}
+  \setbeamerfont{section in head/foot}{}
+  \setbeamerfont{number in head/foot}{}
 
   % define colors
   \definecolor{Dark}{HTML}{363237}
@@ -33,9 +36,9 @@
 
   % define template colors
   \setbeamercolor{frametitle}{fg=Primary}
-  \setbeamercolor{block title}{fg=Primary, bg=Light}
-  \setbeamercolor{block title alerted}{fg=Tertiary, bg=Light}
-  \setbeamercolor{block title example}{fg=Secondary, bg=Light}
+  \setbeamercolor{block title}{fg=Primary, bg=Primary!25}
+  \setbeamercolor{block title alerted}{fg=Tertiary, bg=Tertiary!25}
+  \setbeamercolor{block title example}{fg=Secondary, bg=Secondary!25}
   \setbeamercolor{block body}{bg=Light}
   \setbeamercolor{block body alerted}{bg=Light}
   \setbeamercolor{block body example}{bg=Light}
@@ -105,20 +108,6 @@
   % use rounded blocks with shadow
   \setbeamertemplate{blocks}[rounded][shadow=true]
 
-  % remove frame numbering from title page
-  \renewcommand{\maketitle}{
-    \begin{frame}[plain,noframenumbering]
-      \titlepage
-    \end{frame}
-  }
-
-  % create table of contents template
-  \newcommand{\maketoc}{
-    \begin{frame}[plain,noframenumbering]
-      \frametitle{Outline}
-      \tableofcontents
-    \end{frame}
-  }
   \setbeamertemplate{section in toc}{
     \inserttocsectionnumber. \inserttocsection%
   }
@@ -158,6 +147,21 @@
       \usebeamerfont{title}\usebeamercolor[fg]{title}\insertsubsectionhead\par%
       \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsectionhead\par%
       \vfill
+    \end{frame}
+  }
+
+  % remove frame numbering from title page
+  \renewcommand{\maketitle}{
+    \begin{frame}[plain,noframenumbering]
+      \titlepage
+    \end{frame}
+  }
+
+  % create table of contents template
+  \newcommand{\maketoc}{
+    \begin{frame}[plain,noframenumbering]
+      \frametitle{Outline}
+      \tableofcontents
     \end{frame}
   }
 

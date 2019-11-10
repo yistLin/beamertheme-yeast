@@ -1,10 +1,10 @@
 \documentclass[10pt]{beamer}
 \usetheme{yeast}
 
+\usepackage{lipsum}
 \usepackage{tabularx}
 \renewcommand{\arraystretch}{2}
 \renewcommand\tabularxcolumn[1]{m{#1}}
-\usepackage{lipsum}
 
 \title{Yeast Theme}
 \subtitle{A Beamer Theme Demonstration}
@@ -178,7 +178,9 @@
 \section{And This Is Simply a Test to See Whether a Very Long Section Name Looks Good in the Footline}
 
 \begin{frame}{Lipsum}
-  \lipsum[1]
+  \begin{quotation}
+    \lipsum[1]
+  \end{quotation}
 \end{frame}
 
 \end{document}
