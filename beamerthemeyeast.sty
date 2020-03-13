@@ -1,8 +1,8 @@
 \ProvidesPackage{beamerthemeyeast}
 
-\usepackage{xifthen} % provides \isempty
-% \usepackage{eulervm} % for nice-looking math letters
-\usepackage{concmath} % for nice-looking math letters
+\usepackage{bookmark} % a new bookmark (outline) organization
+\usepackage{etoolbox} % for \ifdefempty
+\usepackage{concmath} % for better math fonts
 \usepackage[sfdefault]{sourcesanspro}
 \usepackage[ttdefault]{sourcecodepro}
 \usepackage[rmdefault]{sourceserifpro}
@@ -14,15 +14,15 @@
 \mode<presentation>
 
   \usetheme{default}
-  \usefonttheme{structurebold}
-  \usefonttheme{professionalfonts}
+  \usefonttheme{structurebold}     % bold font for title, frametitle, etc.
+  \usefonttheme{professionalfonts} % serif font for math letters
 
   % define the left and right margin of text
   \setbeamersize{text margin left=.05\paperwidth, text margin right=.05\paperwidth}
 
   % define fonts
-  \setbeamerfont{author}{series=\bfseries\rmfamily\upshape}
-  \setbeamerfont{date}{series=\bfseries\rmfamily\itshape}
+  \setbeamerfont{author}{series=\bfseries\upshape}
+  \setbeamerfont{date}{series=\bfseries\itshape}
   \setbeamerfont{author in head/foot}{series=\rmfamily\upshape}
   \setbeamerfont{section in head/foot}{}
   \setbeamerfont{number in head/foot}{}
@@ -38,18 +38,18 @@
   % define template colors
   \setbeamercolor{frametitle}{fg=Primary}
   \setbeamercolor{block title}{fg=Primary, bg=Primary!25}
-  \setbeamercolor{block title alerted}{fg=Tertiary, bg=Tertiary!25}
+  \setbeamercolor{block title alerted}{fg=Tertiary!140, bg=Tertiary!25}
   \setbeamercolor{block title example}{fg=Secondary, bg=Secondary!25}
   \setbeamercolor{block body}{bg=Light}
   \setbeamercolor{block body alerted}{bg=Light}
   \setbeamercolor{block body example}{bg=Light}
   \setbeamercolor{normal text}{fg=Dark}
-  \setbeamercolor{alerted text}{fg=Tertiary}
+  \setbeamercolor{alerted text}{fg=Tertiary!150}
   \setbeamercolor{example text}{fg=Secondary}
   \setbeamercolor{title}{fg=Primary}
   \setbeamercolor{subtitle}{fg=Tertiary}
-  \setbeamercolor{author}{fg=Dark}
-  \setbeamercolor{date}{fg=Dark}
+  \setbeamercolor{author}{fg=Grey}
+  \setbeamercolor{date}{fg=Grey}
   \setbeamercolor{author in head/foot}{fg=Secondary, bg=Tertiary}
   \setbeamercolor{section in head/foot}{fg=Tertiary!10, bg=Secondary}
   \setbeamercolor{number in head/foot}{fg=Secondary, bg=Tertiary}
@@ -61,7 +61,7 @@
   \setbeamercolor{enumerate subsubitem}{fg=Secondary}
   \setbeamercolor{description item}{fg=Secondary}
   \setbeamercolor{caption name}{fg=Secondary}
-  \setbeamercolor{section in toc}{fg=Dark}
+  \setbeamercolor{section in toc}{fg=Grey}
   \setbeamercolor{subsection in toc}{fg=Primary}
   \setbeamercolor{math text}{fg=Grey}
 
@@ -73,16 +73,14 @@
     \centering
     \vfill
     {\usebeamerfont{title}\usebeamercolor[fg]{title}\LARGE\inserttitle}\par%
-    \ifthenelse{\isempty{\insertsubtitle}}{
-      \relax
-    }{
+    % show subtitle if it's defined
+    \ifdefempty{\insertsubtitle}{\relax}{
       \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par%
     }
     \vspace{20pt}
     \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par%
-    \ifthenelse{\isempty{\insertinstitute}}{
-      \relax
-    }{
+    % show institute if it's defined
+    \ifdefempty{\insertinstitute}{\relax}{
       \usebeamerfont{institute}\insertinstitute\par%
     }
     {\usebeamerfont{date}\usebeamercolor[fg]{date}\footnotesize\insertdate}\par%
@@ -91,13 +89,34 @@
   % define footline
   \setbeamertemplate{footline}{%
     \hbox{%
-      \begin{beamercolorbox}[wd=.1\paperwidth,ht=3ex,dp=1.75ex,center]{author in head/foot}
+      \begin{beamercolorbox}[
+        wd=.1\paperwidth,
+        ht=3ex,
+        dp=1.75ex,
+        center]{author in head/foot}
         \insertauthor
       \end{beamercolorbox}%
-      \begin{beamercolorbox}[wd=.8\paperwidth,ht=3ex,dp=1.75ex,center]{section in head/foot}
-        \insertsection
+      \begin{beamercolorbox}[
+        wd=.8\paperwidth,
+        ht=3ex,
+        dp=1.75ex,
+        center]{section in head/foot}%
+        % display priority: subsection > section > title
+        \ifdefempty{\insertsection}{
+          \inserttitle
+        }{
+          \ifdefempty{\insertsubsectionhead}{
+            \insertsection
+          }{
+            \insertsubsectionhead
+          }
+        }
       \end{beamercolorbox}%
-      \begin{beamercolorbox}[wd=.1\paperwidth,ht=3ex,dp=1.75ex,center]{number in head/foot}
+      \begin{beamercolorbox}[
+        wd=.1\paperwidth,
+        ht=3ex,
+        dp=1.75ex,
+        center]{number in head/foot}
         \insertframenumber\ /\ \inserttotalframenumber
       \end{beamercolorbox}%
     }
