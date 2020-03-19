@@ -21,11 +21,15 @@
   \setbeamersize{text margin left=.05\paperwidth, text margin right=.05\paperwidth}
 
   % define fonts
-  \setbeamerfont{author}{series=\bfseries\upshape}
-  \setbeamerfont{date}{series=\bfseries\itshape}
-  \setbeamerfont{author in head/foot}{series=\rmfamily\upshape}
-  \setbeamerfont{section in head/foot}{}
-  \setbeamerfont{number in head/foot}{}
+  \setbeamerfont{title}{series=\scshape, size=\LARGE}
+  \setbeamerfont{subtitle}{shape=\upshape}
+  \setbeamerfont{author}{series=\bfseries, shape=\upshape}
+  \setbeamerfont{date}{series=\bfseries, shape=\scshape}
+  \setbeamerfont{author in head/foot}{shape=\upshape}
+  \setbeamerfont{section in head/foot}{shape=\upshape}
+  \setbeamerfont{number in head/foot}{shape=\upshape}
+  \setbeamerfont{section page}{series=\bfseries, shape=\upshape, size=\Large}
+  \setbeamerfont{subsection page}{series=\bfseries, shape=\upshape, size=\normalsize}
 
   % define colors
   \definecolor{Dark}{HTML}{363237}
@@ -50,6 +54,9 @@
   \setbeamercolor{subtitle}{fg=Tertiary}
   \setbeamercolor{author}{fg=Grey}
   \setbeamercolor{date}{fg=Grey}
+  \setbeamercolor{institute}{fg=Grey}
+  \setbeamercolor{section page}{fg=Primary}
+  \setbeamercolor{subsection page}{fg=Tertiary}
   \setbeamercolor{author in head/foot}{fg=Secondary, bg=Tertiary}
   \setbeamercolor{section in head/foot}{fg=Tertiary!10, bg=Secondary}
   \setbeamercolor{number in head/foot}{fg=Secondary, bg=Tertiary}
@@ -70,20 +77,43 @@
 
   % redefine title page
   \setbeamertemplate{title page}{%
-    \centering
+    \center
     \vfill
-    {\usebeamerfont{title}\usebeamercolor[fg]{title}\LARGE\inserttitle}\par%
+    {
+      \usebeamerfont{title}
+      \usebeamercolor[fg]{title}
+      \inserttitle
+      \par
+    }%
     % show subtitle if it's defined
     \ifdefempty{\insertsubtitle}{\relax}{
-      \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par%
-    }
+      \usebeamerfont{subtitle}
+      \usebeamercolor[fg]{subtitle}
+      \insertsubtitle
+      \par
+    }%
     \vspace{20pt}
-    \usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par%
+    {
+      \usebeamerfont{author}
+      \usebeamercolor[fg]{author}
+      \insertauthor
+      \par
+    }%
     % show institute if it's defined
     \ifdefempty{\insertinstitute}{\relax}{
-      \usebeamerfont{institute}\insertinstitute\par%
-    }
-    {\usebeamerfont{date}\usebeamercolor[fg]{date}\footnotesize\insertdate}\par%
+      \usebeamerfont{institute}
+      \usebeamercolor[fg]{insititute}
+      \footnotesize
+      \insertinstitute
+      \par
+    }%
+    {
+      \usebeamerfont{date}
+      \usebeamercolor[fg]{date}
+      \footnotesize
+      \insertdate
+      \par
+    }%
   }
 
   % define footline
@@ -155,17 +185,26 @@
   \AtBeginSection[]{
     \begin{frame}[plain,noframenumbering]
       \vfill
-      \centering
-      \usebeamerfont{title}\usebeamercolor[fg]{title}\insertsectionhead\par
+      \center
+      \usebeamerfont{section page}
+      \usebeamercolor[fg]{section page}
+      \insertsectionhead
+      \par
       \vfill
     \end{frame}
   }
   \AtBeginSubsection[]{
     \begin{frame}[plain,noframenumbering]
       \vfill
-      \centering
-      \usebeamerfont{title}\usebeamercolor[fg]{title}\insertsubsectionhead\par%
-      \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsectionhead\par%
+      \center
+      \usebeamerfont{section page}
+      \usebeamercolor[fg]{section page}
+      \insertsectionhead
+      \par%
+      \usebeamerfont{subsection page}
+      \usebeamercolor[fg]{subsection page}
+      \insertsubsectionhead
+      \par%
       \vfill
     \end{frame}
   }
@@ -174,14 +213,6 @@
   \renewcommand{\maketitle}{
     \begin{frame}[plain,noframenumbering]
       \titlepage
-    \end{frame}
-  }
-
-  % create table of contents template
-  \newcommand{\maketoc}{
-    \begin{frame}[plain,noframenumbering]
-      \frametitle{Outline}
-      \tableofcontents
     \end{frame}
   }
 
