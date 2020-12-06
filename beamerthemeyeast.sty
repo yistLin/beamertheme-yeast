@@ -25,9 +25,9 @@
   \setbeamerfont{subtitle}{shape=\upshape}
   \setbeamerfont{author}{series=\bfseries, shape=\upshape}
   \setbeamerfont{date}{series=\bfseries, shape=\scshape}
-  \setbeamerfont{author in head/foot}{shape=\upshape}
-  \setbeamerfont{section in head/foot}{shape=\upshape}
-  \setbeamerfont{number in head/foot}{shape=\upshape}
+  \setbeamerfont{author in head/foot}{shape=\upshape, size=\scriptsize}
+  \setbeamerfont{section in head/foot}{shape=\upshape, size=\scriptsize}
+  \setbeamerfont{number in head/foot}{shape=\upshape, size=\scriptsize}
   \setbeamerfont{section page}{series=\bfseries, shape=\upshape, size=\Large}
   \setbeamerfont{subsection page}{series=\bfseries, shape=\upshape, size=\normalsize}
 
@@ -121,19 +121,21 @@
     \hbox{%
       \begin{beamercolorbox}[
         wd=.1\paperwidth,
-        ht=3ex,
-        dp=1.75ex,
+        ht=4ex,
+        dp=2ex,
         center]{author in head/foot}
-        \insertauthor
+        \usebeamerfont{author in head/foot}
+        \insertshortauthor
       \end{beamercolorbox}%
       \begin{beamercolorbox}[
         wd=.8\paperwidth,
-        ht=3ex,
-        dp=1.75ex,
+        ht=4ex,
+        dp=2ex,
         center]{section in head/foot}%
+        \usebeamerfont{section in head/foot}
         % display priority: subsection > section > title
         \ifdefempty{\insertsection}{
-          \inserttitle
+          \insertshorttitle
         }{
           \ifdefempty{\insertsubsectionhead}{
             \insertsection
@@ -144,9 +146,10 @@
       \end{beamercolorbox}%
       \begin{beamercolorbox}[
         wd=.1\paperwidth,
-        ht=3ex,
-        dp=1.75ex,
+        ht=4ex,
+        dp=2ex,
         center]{number in head/foot}
+        \usebeamerfont{number in head/foot}
         \insertframenumber\ /\ \inserttotalframenumber
       \end{beamercolorbox}%
     }
